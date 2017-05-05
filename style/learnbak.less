@@ -1,0 +1,8 @@
+@charset "utf-8";
+ /*CSS的注释编译时会保留*/ 
+ @box_width:300px; //定义并初始化变量
+  .box{ width: @box_width + 100; //使用变量,并进行运算 
+  height: @box_width - 2*50; //注意变量和数字之间要留空格，否则编译不通过 
+  background: yellow; }
+//引用box的全部样式并且使得左边距为100px
+//带参数的混合 .border_width1(@b_width){ border: solid blue @b_width; } .test_mix1{ .border_width1(5px); }

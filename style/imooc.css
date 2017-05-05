@@ -1,0 +1,62 @@
+@charset "utf-8";
+/* 1.变量、注释和运算 */
+/*CSS的注释编译时会保留*/
+/*var_demo1*/
+.box {
+  width: 400px;
+  height: 200px;
+  background: red;
+}
+/*var_demo2*/
+#homeDiv #centerDiv {
+  width: 30px;
+}
+#leftDiv {
+  width: 20px;
+}
+/*2.混合与嵌套*/
+/* Mixins_demo1 */
+.box3 {
+  width: 400px;
+  height: 200px;
+  background: red;
+  margin-left: 100px;
+}
+/* Mixins_demo2 */
+.test_mix1 {
+  border: solid blue 5px;
+}
+.test_mix2 {
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  width: 100px;
+  height: 20px;
+  background: pink;
+}
+.test_arg {
+  box-shadow: 2px 2px 3px #f36;
+}
+/* 3.嵌套的规则 */
+.list {
+  width: 600px;
+  margin: 30px auto;
+  padding: 0;
+  list-style: none;
+}
+.list li {
+  height: 30px;
+  line-height: 30px;
+  background: pink;
+  margin-bottom: 3px;
+  padding: 0 10px;
+}
+.list a {
+  float: left;
+}
+.list a:hover {
+  color: red;
+}
+.list span {
+  float: right;
+}

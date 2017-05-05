@@ -1,0 +1,94 @@
+@charset "utf-8";
+
+/* 1.变量、注释和运算 */
+
+/*CSS的注释编译时会保留*/
+/*var_demo1*/
+@box_width:300px;//定义并初始化变量
+.box{
+	width: @box_width + 100;//使用变量,并进行运算 
+	height: @box_width - 2*50;//注意变量和数字之间要留空格，否则编译不通过
+	background: red;
+}
+/*var_demo2*/
+//LESS 中的变量和其他编程语言一样，可以实现值的复用，同样它也有生命周期
+// 作用域范围：查找变量的顺序是先在局部定义中找，如果找不到，则查找上级定义，直至全局
+ @width : 20px; 
+ #homeDiv { 
+   @width : 30px; 
+   #centerDiv{ 
+       width : @width;// 此处应该取最近定义的变量 width 的值 30px 
+              } 
+ } 
+ #leftDiv { 
+     width : @width; // 此处应该取最上面定义的变量 width 的值 20px 
+
+ }
+
+/*2.混合与嵌套*/
+
+/* Mixins_demo1 */
+.box3{
+	.box;//引用box的全部样式并且使得左边距为100px
+	margin-left: 100px;
+}
+//除了这种最简单的混合外，less还支持带参数的混合以及有默认参数值的混合
+/* Mixins_demo2 */
+//2.1带参数的混合 
+// 定义一个样式选择器
+.border_width1(@b_width){
+	border:solid blue @b_width;
+}
+ //在另外的样式选择器中使用
+ .test_mix1{
+ 	.border_width1(5px);
+ }
+ //2.2参数有默认值的混合 
+ .border_radius(@radius:5px){
+ 	border-radius: @radius;
+ 	-webkit-border-radius:@radius;
+ 	-moz-border-radius:@radius;
+ }
+ .test_mix2{
+ 	.border_radius();
+ 	width: 100px;
+ 	height: 20px;
+ 	background: pink;
+ }
+
+ //2.3@arguments代表传进所有的参数 
+ .boxShadow(@x:0,@y:0,@blur:1px,@color:#000){ 
+ -moz-box-shadow: @arguments; 
+ -webkit-box-shadow: @arguments; 
+ box-shadow: @arguments; 
+ } 
+ .test_arg { 
+ .boxShadow(2px,2px,3px,#f36); 
+ }
+ /* 3.嵌套的规则 */
+
+ .list{ 
+ 	width: 600px; 
+ 	margin: 30px auto; 
+ 	padding: 0; 
+ 	list-style: none; 
+ 	li{ 
+ 	//嵌套在list下的li
+ 	 height: 30px; 
+ 	 line-height: 30px;
+ 	  background: pink;
+ 	   margin-bottom: 3px; 
+ 	   padding: 0 10px;
+ 	    }
+ 	a{ //也可以嵌套在li里面，但是嵌套层次太多影响CSS的效率 
+ 	   float: left; 
+ 	   //&代表上一层选择器
+ 	    &:hover{ 
+ 	    	color: red; 
+ 	    } 
+ 	 } 
+ 	span{ 
+ 	  	float: right; 
+ 	  }
+
+  }

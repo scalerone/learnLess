@@ -1,0 +1,7 @@
+@charset "utf-8";
+/*CSS的注释编译时会保留*/
+.box {
+  width: 400px;
+  height: 200px;
+  background: yellow;
+}

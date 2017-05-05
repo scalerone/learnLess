@@ -1,0 +1,25 @@
+ @charset"utf-8";
+ @border-color : #b5bcc7; 
+ .mythemes { 
+   border : 1px solid @border-color; 
+ }
+  @width : 20px; 
+ #homeDiv { 
+   @width : 30px; 
+   #centerDiv{ 
+       width : @width;// 此处应该取最近定义的变量 width 的值 30px 
+              } 
+ } 
+ #leftDiv { 
+     width : @width; // 此处应该取最上面定义的变量 width 的值 20px 
+ }
+  #leftDiv3 { 
+     width : @width; // 此处应该取最上面定义的变量 width 的值 20px 
+     border-radius: 5px; 
+ }
+ a { 
+ 	transition: transform 1s;
+  }
+  .a{
+    display:flex;
+}
