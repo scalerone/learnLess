@@ -7,6 +7,9 @@
   height: 200px;
   background: red;
 }
+.switchColor {
+  color: #222222;
+}
 /*var_demo2*/
 #homeDiv #centerDiv {
   width: 30px;
@@ -37,6 +40,18 @@
 .test_arg {
   box-shadow: 2px 2px 3px #f36;
 }
+#mynamespace .home {
+  background: #ccc;
+}
+#mynamespace .user {
+  text-align: center;
+  color: #333;
+}
+.test_namespace {
+  text-align: center;
+  color: #333;
+  font-size: 12px;
+}
 /* 3.嵌套的规则 */
 .list {
   width: 600px;
@@ -59,4 +74,21 @@
 }
 .list span {
   float: right;
+}
+/* 4.匹配模式*/
+.sanjiao {
+  border-color: transparent black transparent transparent;
+  border-width: 10px;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  border-style: solid;
+}
+/*6、避免编译
+作者： _Run_ 
+链接：http://www.imooc.com/article/16455?block_id=tuijian_wz
+链接：http://cuiqingcai.com/1760.html
+来源：慕课网*/
+.test_avoid {
+  width: (300px-100px);
 }

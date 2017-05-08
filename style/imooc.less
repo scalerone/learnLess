@@ -10,6 +10,11 @@
 	height: @box_width - 2*50;//注意变量和数字之间要留空格，否则编译不通过
 	background: red;
 }
+ @init: #111111; 
+ @transition: @init*2; 
+ .switchColor { 
+ color: @transition; 
+ }
 /*var_demo2*/
 //LESS 中的变量和其他编程语言一样，可以实现值的复用，同样它也有生命周期
 // 作用域范围：查找变量的顺序是先在局部定义中找，如果找不到，则查找上级定义，直至全局
@@ -65,6 +70,27 @@
  .test_arg { 
  .boxShadow(2px,2px,3px,#f36); 
  }
+
+//2.4 Mixins之命名空间，
+// 当我们拥有了大量选择器的时候，特别是团队协同开发时，如何保证选择器之间重名问题,
+// 选择命名空间 Namespaces，LESS 也采用了命名空间的方法来避免重名问题，于是乎 LESS 在 mixins 的基础上扩展了一下
+ #mynamespace { 
+	 .home {
+	 	background: #ccc;
+	 } 
+	 .user {
+		text-align: center;
+		color: #333;
+	 	} 
+ }
+
+.test_namespace{
+	#mynamespace>.user;
+	font-size: 12px;
+}
+
+
+
  /* 3.嵌套的规则 */
 
  .list{ 
@@ -92,3 +118,55 @@
  	  }
 
   }
+/* 4.匹配模式*/
+//在开发前端页面的过程中，经常会有样式相近重复率高的情况出现。
+// 比如编写一个三角箭头小图标，颜色、大小、箭头朝向在不同的地方各不相同。
+// 如果一个一个地去写样式就非常麻烦。less中的匹配模式，就可以统一模板，在需要的时候，根据情况调用即可。
+//匹配模式：三角形小图标的例子
+//第一个参数不同，在调用时可以通过传入第一个参数进行匹配，得到不同的样式即可
+.triangle(top,@width:5px,@color:white) {//匹配三角形朝上的情况
+     border-color: transparent transparent @color transparent;
+	border-width: @width;
+}
+
+.triangle(bottom,@width:5px,@color:white) {//匹配三角形朝下的情况 
+    border-color: @color transparent transparent transparent;
+	border-width: @width;
+}
+
+.triangle(left,@width:5px,@color:white) {
+	//匹配三角形朝左的情况 
+	border-color: transparent @color transparent transparent;
+	border-width: @width;
+}
+
+.triangle(right,@width:5px,@color:white) {//匹配三角形朝右的情况 
+        border-color: transparent transparent transparent @color;
+	border-width: @width;
+}
+
+.triangle(@_,@width:5px,@color:white) {//无论什么情况都要执行的代码,第一个参数是固定的格式 
+        width: 0;
+	height: 0;
+	overflow: hidden;
+	border-style: solid;
+}
+
+.sanjiao {
+	.triangle(left,10px,black);
+}
+/*6、避免编译
+作者： _Run_ 
+链接：http://www.imooc.com/article/16455?block_id=tuijian_wz
+链接：http://cuiqingcai.com/1760.html
+来源：慕课网*/
+//有些情况下，我们不需要less中的某些内容被自动编译，而是保留下来原样放到CSS中，此时可以使用~‘ ’：
+//避免编译 
+.test_avoid{ 
+	width: ~'(300px-100px)'; 
+}
+
+
+
+
+
